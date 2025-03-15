@@ -7,17 +7,15 @@
 	"require": {},
 	"autoload": {
 		"psr-4": {
-			"StubModuleNamespace\\StubClassNamePrefix\\": "src/",
-			"StubModuleNamespace\\StubClassNamePrefix\\Tests\\": "tests/",
-			"StubModuleNamespace\\StubClassNamePrefix\\Database\\Factories\\": "database/factories/",
-			"StubModuleNamespace\\StubClassNamePrefix\\Database\\Seeders\\": "database/seeders/"
+			"StubDomainNamespace\\StubClassNamePrefix\\": "src/",
+			"StubDomainNamespace\\StubClassNamePrefix\\Tests\\": "tests/"
 		}
 	},
 	"minimum-stability": "stable",
 	"extra": {
 		"laravel": {
 			"providers": [
-				"StubModuleNamespace\\StubClassNamePrefix\\Providers\\StubClassNamePrefixServiceProvider"
+				"StubDomainNamespace\\StubClassNamePrefix\\Providers\\StubClassNamePrefixServiceProvider"
 			]
 		}
 	}

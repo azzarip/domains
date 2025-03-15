@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => 'web',
-    'domain' => config('domains.key.url'),
+    'domain' => config('domains.StubDomainKey.url'),
 ], function () {
-    Route::view('/', 'key::homepage');
+    Route::view('/', 'StubDomainNamespace::homepage');
 });

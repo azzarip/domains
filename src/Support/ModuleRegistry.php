@@ -21,6 +21,11 @@ class ModuleRegistry
 	{
 		return $this->modules_path;
 	}
+
+	public function getDomainsPath(): string
+	{
+		return $this->modules_path;
+	}
 	
 	public function getCachePath(): string
 	{

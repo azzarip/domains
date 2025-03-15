@@ -3,30 +3,28 @@
 namespace Azzarip\Domains\Support;
 
 use Closure;
-use Illuminate\Console\Application as Artisan;
-use Illuminate\Console\Command;
-use Illuminate\Contracts\Auth\Access\Gate;
-use Illuminate\Contracts\Translation\Translator as TranslatorContract;
-use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
-use Illuminate\Database\Eloquent\Factories\Factory as EloquentFactory;
-use Illuminate\Database\Migrations\Migrator;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\ServiceProvider;
+use ReflectionClass;
+use Livewire\Livewire;
 use Illuminate\Support\Str;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Translation\Translator;
-use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Finder\SplFileInfo;
+use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\View\Factory as ViewFactory;
-use Azzarip\Domains\Console\Commands\Make\MakeMigration;
-use Azzarip\Domains\Console\Commands\Make\MakeModule;
-use Azzarip\Domains\Console\Commands\ModulesCache;
-use Azzarip\Domains\Console\Commands\ModulesClear;
+use Illuminate\Database\Migrations\Migrator;
+use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\Console\Application as Artisan;
 use Azzarip\Domains\Console\Commands\ModulesList;
 use Azzarip\Domains\Console\Commands\ModulesSync;
-use Livewire\Livewire;
-use ReflectionClass;
-use Symfony\Component\Finder\SplFileInfo;
+use Azzarip\Domains\Console\Commands\DomainsClear;
+use Azzarip\Domains\Console\Commands\ModulesCache;
+use Azzarip\Domains\Console\Commands\Make\MakeDomain;
+use Illuminate\Contracts\Translation\Translator as TranslatorContract;
+use Illuminate\Database\Eloquent\Factories\Factory as EloquentFactory;
 
-class ModularServiceProvider extends ServiceProvider
+class DomainsServiceProvider extends ServiceProvider
 {
 	protected ?ModuleRegistry $registry = null;
 	
@@ -34,7 +32,7 @@ class ModularServiceProvider extends ServiceProvider
 	
 	protected string $base_dir;
 	
-	protected ?string $modules_path = null;
+	protected ?string $domains_path = null;
 	
 	public function __construct($app)
 	{
@@ -44,29 +42,15 @@ class ModularServiceProvider extends ServiceProvider
 	}
 	
 	public function register(): void
-	{
-		$this->mergeConfigFrom("{$this->base_dir}/config.php", 'app-modules');
-		
+	{	
 		$this->app->singleton(ModuleRegistry::class, function() {
 			return new ModuleRegistry(
-				$this->getModulesBasePath(),
+				$this->getDomainsBasePath(),
 				$this->app->bootstrapPath('cache/modules.php')
 			);
 		});
 		
 		$this->app->singleton(AutoDiscoveryHelper::class);
-		
-		$this->app->singleton(MakeMigration::class, function($app) {
-			return new MigrateMakeCommand($app['migration.creator'], $app['composer']);
-		});
-		
-		$this->registerEloquentFactories();
-		
-		// Set up lazy registrations for things that only need to run if we're using
-		// that functionality (e.g. we only need to look for and register migrations
-		// if we're running the migrator)
-		$this->registerLazily(Migrator::class, [$this, 'registerMigrations']);
-		$this->registerLazily(Gate::class, [$this, 'registerPolicies']);
 		
 		// Look for and register all our commands in the CLI context
 		Artisan::starting(Closure::fromCallable([$this, 'onArtisanStart']));
@@ -109,9 +93,9 @@ class ModularServiceProvider extends ServiceProvider
 		}
 		
 		$this->commands([
-			MakeModule::class,
+			MakeDomain::class,
 			ModulesCache::class,
-			ModulesClear::class,
+			DomainsClear::class,
 			ModulesSync::class,
 			ModulesList::class,
 		]);
@@ -230,51 +214,6 @@ class ModularServiceProvider extends ServiceProvider
 			});
 	}
 	
-	protected function registerMigrations(Migrator $migrator): void
-	{
-		$this->autoDiscoveryHelper()
-			->migrationDirectoryFinder()
-			->each(function(SplFileInfo $path) use ($migrator) {
-				$migrator->path($path->getRealPath());
-			});
-	}
-	
-	protected function registerEloquentFactories(): void
-	{
-		$helper = new DatabaseFactoryHelper($this->registry());
-		
-		EloquentFactory::guessModelNamesUsing($helper->modelNameResolver());
-		EloquentFactory::guessFactoryNamesUsing($helper->factoryNameResolver());
-	}
-	
-	protected function registerPolicies(Gate $gate): void
-	{
-		$this->autoDiscoveryHelper()
-			->modelFileFinder()
-			->each(function(SplFileInfo $file) use ($gate) {
-				$module = $this->registry()->moduleForPathOrFail($file->getPath());
-				$fully_qualified_model = $module->pathToFullyQualifiedClassName($file->getPathname());
-				
-				// First, check for a policy that maps to the full namespace of the model
-				// i.e. Models/Foo/Bar -> Policies/Foo/BarPolicy
-				$namespaced_model = Str::after($fully_qualified_model, 'Models\\');
-				$namespaced_policy = rtrim($module->namespaces->first(), '\\').'\\Policies\\'.$namespaced_model.'Policy';
-				if (class_exists($namespaced_policy)) {
-					$gate->policy($fully_qualified_model, $namespaced_policy);
-				}
-				
-				// If that doesn't match, try the simple mapping as well
-				// i.e. Models/Foo/Bar -> Policies/BarPolicy
-				if (false !== strpos($namespaced_model, '\\')) {
-					$simple_model = Str::afterLast($fully_qualified_model, '\\');
-					$simple_policy = rtrim($module->namespaces->first(), '\\').'\\Policies\\'.$simple_model.'Policy';
-					
-					if (class_exists($simple_policy)) {
-						$gate->policy($fully_qualified_model, $simple_policy);
-					}
-				}
-			});
-	}
 	
 	protected function onArtisanStart(Artisan $artisan): void
 	{
@@ -318,14 +257,13 @@ class ModularServiceProvider extends ServiceProvider
 		return $this;
 	}
 	
-	protected function getModulesBasePath(): string
+	protected function getDomainsBasePath(): string
 	{
-		if (null === $this->modules_path) {
-			$directory_name = $this->app->make('config')->get('app-modules.modules_directory', 'app-modules');
-			$this->modules_path = str_replace('\\', '/', $this->app->basePath($directory_name));
+		if (null === $this->domains_path) {
+			$this->domains_path = str_replace('\\', '/', $this->app->basePath('domains'));
 		}
 		
-		return $this->modules_path;
+		return $this->domains_path;
 	}
 	
 	protected function isInstantiableCommand($command): bool

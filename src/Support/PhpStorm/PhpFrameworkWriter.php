@@ -12,7 +12,7 @@ class PhpFrameworkWriter extends ConfigWriter
 	{
 		$config = $this->getNormalizedPluginConfig();
 		
-		$namespace = config('app-modules.modules_namespace', 'Modules');
+		$namespace = config('app-modules.domains_namespace', 'Modules');
 		$vendor = config('app-modules.modules_vendor') ?? Str::kebab($namespace);
 		$module_paths = $this->module_registry->modules()
 			->map(function(ModuleConfig $module) use (&$config, $vendor) {

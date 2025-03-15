@@ -8,18 +8,18 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Azzarip\Domains\Console\Commands\ModulesClear;
+use Azzarip\Domains\Console\Commands\DomainsClear;
 use Azzarip\Domains\Support\ModuleRegistry;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Terminal;
 
-class MakeModule extends Command
+class MakeDomain extends Command
 {
-	protected $signature = 'make:module
-		{name : The name of the module}
+	protected $signature = 'make:domain
+		{key : The key of the module}
 		{--accept-default-namespace : Skip default namespace confirmation}';
 	
-	protected $description = 'Create a new Laravel module';
+	protected $description = 'Create a new Laravel domain';
 	
 	/**
 	 * This is the base path of the module
@@ -33,7 +33,7 @@ class MakeModule extends Command
 	 *
 	 * @var string
 	 */
-	protected $module_namespace;
+	protected $domain_namespace;
 	
 	/**
 	 * This is the composer namespace for all modules
@@ -47,7 +47,7 @@ class MakeModule extends Command
 	 *
 	 * @var string
 	 */
-	protected $module_name;
+	protected $domain_key;
 	
 	/**
 	 * This is the module name as a StudlyCase'd name
@@ -72,79 +72,47 @@ class MakeModule extends Command
 	/**
 	 * @var \Azzarip\Domains\Support\ModuleRegistry
 	 */
-	protected $module_registry;
+	protected $domain_registry;
 	
-	public function __construct(Filesystem $filesystem, ModuleRegistry $module_registry)
+	public function __construct(Filesystem $filesystem, ModuleRegistry $domain_registry)
 	{
 		parent::__construct();
 		
 		$this->filesystem = $filesystem;
-		$this->module_registry = $module_registry;
+		$this->domain_registry = $domain_registry;
 	}
 	
 	public function handle()
 	{
-		$this->module_name = Str::kebab($this->argument('name'));
-		$this->class_name_prefix = Str::studly($this->argument('name'));
-		$this->module_namespace = config('app-modules.modules_namespace', 'Modules');
-		$this->composer_namespace = config('app-modules.modules_vendor') ?? Str::kebab($this->module_namespace);
-		$this->composer_name = "{$this->composer_namespace}/{$this->module_name}";
-		$this->base_path = $this->module_registry->getModulesPath().'/'.$this->module_name;
+		$this->domain_key = Str::kebab($this->argument('key'));
+		$this->class_name_prefix = Str::studly($this->argument('key'));
+		$this->domain_namespace = 'Domains';
+		$this->composer_namespace = 'Domains';
+		$this->composer_name = "{$this->composer_namespace}/{$this->domain_key}";
+		$this->base_path = $this->domain_registry->getDomainsPath().'/'.$this->domain_key;
 		
 		$this->setUpStyles();
 		
 		$this->newLine();
 
-		if ($this->shouldAbortToPublishConfig()) {
-			return 0;
-		}
-
-		$this->ensureModulesDirectoryExists();
+		$this->ensureDomainsDirectoryExists();
 
 		$this->writeStubs();
 		$this->updateCoreComposerConfig();
 		
-		$this->call(ModulesClear::class);
+		$this->call(DomainsClear::class);
 		
 		$this->newLine();
 		$this->line("Please run <kbd>composer update {$this->composer_name}</kbd>");
 		$this->newLine();
 		
-		$this->module_registry->reload();
+		$this->domain_registry->reload();
 		
 		return 0;
 	}
 	
-	protected function shouldAbortToPublishConfig(): bool
-	{
-		if (
-			'Modules' !== $this->module_namespace
-			|| true === $this->option('accept-default-namespace')
-			|| $this->module_registry->modules()->isNotEmpty()
-		) {
-			return false;
-		}
-		
-		$this->title('Welcome');
-		
-		$message = "You're about to create your first module in the <info>{$this->module_namespace}</info> "
-			.'namespace. This is the default namespace, and will work for many use-cases. However, '
-			.'if you ever choose to extract a module into its own package, you will '
-			."likely want to use a custom namespace (like your organization name).\n\n"
-			.'If you would like to use a custom namespace, please publish the config '
-			."and customize it first. You can do this by calling:\n\n"
-			.'<kbd>php artisan vendor:publish --tag=modular-config</kbd>';
-		
-		$width = min((new Terminal())->getWidth(), 100) - 1;
-		$messages = explode(PHP_EOL, wordwrap($message, $width, PHP_EOL));
-		foreach ($messages as $message) {
-			$this->line(" {$message}");
-		}
-		
-		return $this->confirm('Would you like to cancel and configure your module namespace first?', true);
-	}
 	
-	protected function ensureModulesDirectoryExists()
+	protected function ensureDomainsDirectoryExists()
 	{
 		if (! $this->filesystem->isDirectory($this->base_path)) {
 			$this->filesystem->makeDirectory($this->base_path, 0777, true);
@@ -154,17 +122,17 @@ class MakeModule extends Command
 	
 	protected function writeStubs()
 	{
-		$this->title('Creating initial module files');
+		$this->title('Creating initial domains files');
 		
-		$tests_base = config('app-modules.tests_base', 'Tests\TestCase');
+		$tests_base = 'Tests\TestCase';
 		
 		$placeholders = [
 			'StubBasePath' => $this->base_path,
-			'StubModuleNamespace' => $this->module_namespace,
+			'StubDomainKey' => $this->domain_key,
+			'StubDomainNamespace' => $this->domain_namespace,
 			'StubComposerNamespace' => $this->composer_namespace,
-			'StubModuleNameSingular' => Str::singular($this->module_name),
-			'StubModuleNamePlural' => Str::plural($this->module_name),
-			'StubModuleName' => $this->module_name,
+			'StubModuleNameSingular' => Str::singular($this->domain_namespace),
+			'StubModuleNamePlural' => Str::plural($this->domain_namespace),
 			'StubClassNamePrefix' => $this->class_name_prefix,
 			'StubComposerName' => $this->composer_name,
 			'StubMigrationPrefix' => date('Y_m_d_His'),
@@ -196,13 +164,6 @@ class MakeModule extends Command
 		$this->newLine();
 	}
 	
-	protected function seedersDirectory(): string
-	{
-		return version_compare($this->getLaravel()->version(), '8.0.0', '>=')
-			? 'seeders'
-			: 'seeds';
-	}
-	
 	protected function updateCoreComposerConfig()
 	{
 		$this->title('Updating application composer.json file');
@@ -224,9 +185,9 @@ class MakeModule extends Command
 			$definition['require'] = [];
 		}
 		
-		$module_config = [
+		$domain_config = [
 			'type' => 'path',
-			'url' => str_replace('\\', '/', config('app-modules.modules_directory', 'app-modules')).'/*',
+			'url' => str_replace('\\', '/', 'domains').'/*',
 			'options' => [
 				'symlink' => true,
 			],
@@ -235,18 +196,18 @@ class MakeModule extends Command
 		$has_changes = false;
 		
 		$repository_already_exists = collect($definition['repositories'])
-			->contains(function($repository) use ($module_config) {
-				return $repository['url'] === $module_config['url'];
+			->contains(function($repository) use ($domain_config) {
+				return $repository['url'] === $domain_config['url'];
 			});
 		
 		if (false === $repository_already_exists) {
-			$this->line(" - Adding path repository for <info>{$module_config['url']}</info>");
+			$this->line(" - Adding path repository for <info>{$domain_config['url']}</info>");
 			$has_changes = true;
 			
 			if (Arr::isAssoc($definition['repositories'])) {
-				$definition['repositories'][$this->module_name] = $module_config;
+				$definition['repositories'][$this->domain_name] = $domain_config;
 			} else {
-				$definition['repositories'][] = $module_config;
+				$definition['repositories'][] = $domain_config;
 			}
 		}
 		
@@ -254,7 +215,7 @@ class MakeModule extends Command
 			$this->line(" - Adding require statement for <info>{$this->composer_name}:*</info>");
 			$has_changes = true;
 			
-			$definition['require']["{$this->composer_namespace}/{$this->module_name}"] = '*';
+			$definition['require']["{$this->composer_namespace}/{$this->domain_name}"] = '*';
 			$definition['require'] = $this->sortComposerPackages($definition['require']);
 		}
 		
@@ -322,27 +283,14 @@ class MakeModule extends Command
 	
 	protected function getStubs(): array
 	{
-		if (is_array($custom_stubs = config('app-modules.stubs'))) {
-			return $custom_stubs;
-		}
-		
-		$composer_stub = version_compare($this->getLaravel()->version(), '8.0.0', '<')
-			? 'composer-stub-v7.json'
-			: 'composer-stub-latest.json';
+		$composer_stub = 'composer-stub-latest.json';
 		
 		return [
 			'composer.json' => $this->pathToStub($composer_stub),
 			'src/Providers/StubClassNamePrefixServiceProvider.php' => $this->pathToStub('ServiceProvider.php'),
 			'tests/Feature/Providers/StubClassNamePrefixServiceProviderTest.php' => $this->pathToStub('ServiceProviderTest.php'),
-			'database/migrations/StubMigrationPrefix_set_up_StubModuleName_module.php' => $this->pathToStub('migration.php'),
-			'routes/StubModuleName-routes.php' => $this->pathToStub('web-routes.php'),
-			'resources/views/index.blade.php' => $this->pathToStub('view.blade.php'),
-			'resources/views/create.blade.php' => $this->pathToStub('view.blade.php'),
-			'resources/views/show.blade.php' => $this->pathToStub('view.blade.php'),
-			'resources/views/edit.blade.php' => $this->pathToStub('view.blade.php'),
-			'database/factories/.gitkeep' => $this->pathToStub('.gitkeep'),
-			'database/migrations/.gitkeep' => $this->pathToStub('.gitkeep'),
-			'database/'.$this->seedersDirectory().'/.gitkeep' => $this->pathToStub('.gitkeep'),
+			'routes/StubDomain-routes.php' => $this->pathToStub('web-routes.php'),
+			'resources/views/homepage.blade.php' => $this->pathToStub('view.blade.php'),
 		];
 	}
 	

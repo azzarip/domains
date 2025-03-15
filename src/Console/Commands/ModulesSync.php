@@ -48,12 +48,10 @@ class ModulesSync extends Command
 			$this->warn('No phpunit.xml file found. Skipping PHPUnit configuration.');
 			return;
 		}
-		
-		$modules_directory = config('app-modules.modules_directory', 'app-modules');
-		
+				
 		$config = simplexml_load_string($this->filesystem->get($config_path));
 		
-		$existing_nodes = $config->xpath("//phpunit//testsuites//testsuite//directory[text()='./{$modules_directory}/*/tests']");
+		$existing_nodes = $config->xpath("//phpunit//testsuites//testsuite//directory[text()='./domains/*/tests']");
 		
 		if (count($existing_nodes)) {
 			$this->info('Modules test suite already exists in phpunit.xml');
@@ -71,7 +69,7 @@ class ModulesSync extends Command
 		
 		$directory = $testsuite->addChild('directory');
 		$directory->addAttribute('suffix', 'Test.php');
-		$directory[0] = "./{$modules_directory}/*/tests";
+		$directory[0] = "./domains/*/tests";
 		
 		$this->filesystem->put($config_path, $config->asXML());
 		$this->info('Added "Modules" PHPUnit test suite.');

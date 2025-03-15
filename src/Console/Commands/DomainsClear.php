@@ -6,11 +6,11 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Azzarip\Domains\Support\ModuleRegistry;
 
-class ModulesClear extends Command
+class DomainsClear extends Command
 {
-	protected $signature = 'modules:clear';
+	protected $signature = 'domains:clear';
 	
-	protected $description = 'Remove the module cache file';
+	protected $description = 'Remove the domains cache file';
 	
 	public function handle(Filesystem $filesystem, ModuleRegistry $registry)
 	{

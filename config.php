@@ -45,7 +45,7 @@ return [
 	|
 	*/
 	
-	'modules_directory' => 'domains',
+	'domains_directory' => 'domains',
 	
 	/*
 	|--------------------------------------------------------------------------

@@ -48,7 +48,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Azzarip\\Domains\\Support\\ModularServiceProvider",
+                "Azzarip\\Domains\\Support\\DomainsServiceProvider",
                 "Azzarip\\Domains\\Support\\ModularizedCommandsServiceProvider",
                 "Azzarip\\Domains\\Support\\ModularEventServiceProvider"
             ],
