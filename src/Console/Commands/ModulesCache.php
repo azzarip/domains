@@ -1,11 +1,11 @@
 <?php
 
-namespace InterNACHI\Modular\Console\Commands;
+namespace Azzarip\Domains\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use InterNACHI\Modular\Support\ModuleConfig;
-use InterNACHI\Modular\Support\ModuleRegistry;
+use Azzarip\Domains\Support\ModuleConfig;
+use Azzarip\Domains\Support\ModuleRegistry;
 use LogicException;
 use Throwable;
 

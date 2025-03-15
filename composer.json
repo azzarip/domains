@@ -1,16 +1,17 @@
 {
-    "name": "internachi/modular",
-    "description": "Modularize your Laravel apps",
+    "name": "azzarip/domains",
+    "description": "Modularize Laravel domains in one app",
     "keywords": [
         "laravel",
         "modules",
         "modular",
-        "module"
+        "module",
+        "domains"
     ],
     "authors": [
         {
-            "name": "Chris Morrell",
-            "homepage": "http://www.cmorrell.com"
+            "name": "Paride Azzari",
+            "email": "paride21azzari@gmail.com"
         }
     ],
     "type": "library",
@@ -32,12 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "InterNACHI\\Modular\\": "src/"
+            "Azzarip\\Domains\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "InterNACHI\\Modular\\Tests\\": "tests/"
+            "Azzarip\\Domains\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -47,12 +48,12 @@
     "extra": {
         "laravel": {
             "providers": [
-                "InterNACHI\\Modular\\Support\\ModularServiceProvider",
-                "InterNACHI\\Modular\\Support\\ModularizedCommandsServiceProvider",
-                "InterNACHI\\Modular\\Support\\ModularEventServiceProvider"
+                "Azzarip\\Domains\\Support\\ModularServiceProvider",
+                "Azzarip\\Domains\\Support\\ModularizedCommandsServiceProvider",
+                "Azzarip\\Domains\\Support\\ModularEventServiceProvider"
             ],
             "aliases": {
-                "Modules": "InterNACHI\\Modular\\Support\\Facades\\Modules"
+                "Domains": "Azzarip\\Domains\\Support\\Facades\\Modules"
             }
         }
     },

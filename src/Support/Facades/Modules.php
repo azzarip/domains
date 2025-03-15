@@ -1,11 +1,11 @@
 <?php
 
-namespace InterNACHI\Modular\Support\Facades;
+namespace Azzarip\Domains\Support\Facades;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
-use InterNACHI\Modular\Support\ModuleConfig;
-use InterNACHI\Modular\Support\ModuleRegistry;
+use Azzarip\Domains\Support\ModuleConfig;
+use Azzarip\Domains\Support\ModuleRegistry;
 
 /**
  * @method static ModuleConfig|null module(string $name)
@@ -14,7 +14,7 @@ use InterNACHI\Modular\Support\ModuleRegistry;
  * @method static Collection modules()
  * @method static Collection reload()
  *
- * @see \InterNACHI\Modular\Support\ModuleRegistry
+ * @see \Azzarip\Domains\Support\ModuleRegistry
  */
 class Modules extends Facade
 {

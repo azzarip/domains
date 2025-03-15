@@ -1,8 +1,8 @@
 <?php
 
-namespace InterNACHI\Modular\Tests\Concerns;
+namespace Azzarip\Domains\Tests\Concerns;
 
-use InterNACHI\Modular\Console\Commands\Make\MakeModule;
+use Azzarip\Domains\Console\Commands\Make\MakeModule;
 
 trait TestsMakeCommands
 {

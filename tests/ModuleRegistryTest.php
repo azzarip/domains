@@ -1,10 +1,10 @@
 <?php
 
-namespace InterNACHI\Modular\Tests;
+namespace Azzarip\Domains\Tests;
 
-use InterNACHI\Modular\Support\ModuleConfig;
-use InterNACHI\Modular\Support\ModuleRegistry;
-use InterNACHI\Modular\Tests\Concerns\WritesToAppFilesystem;
+use Azzarip\Domains\Support\ModuleConfig;
+use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
 
 class ModuleRegistryTest extends TestCase
 {

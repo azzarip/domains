@@ -1,10 +1,10 @@
 <?php
 
-namespace InterNACHI\Modular\Console\Commands\Make;
+namespace Azzarip\Domains\Console\Commands\Make;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Foundation\Console\ListenerMakeCommand;
-use InterNACHI\Modular\Support\Facades\Modules;
+use Azzarip\Domains\Support\Facades\Modules;
 
 class MakeListener extends ListenerMakeCommand
 {

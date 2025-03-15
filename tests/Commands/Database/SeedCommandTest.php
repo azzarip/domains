@@ -1,9 +1,9 @@
 <?php
 
-namespace InterNACHI\Modular\Tests\Commands\Database;
+namespace Azzarip\Domains\Tests\Commands\Database;
 
-use InterNACHI\Modular\Tests\Concerns\WritesToAppFilesystem;
-use InterNACHI\Modular\Tests\TestCase;
+use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
+use Azzarip\Domains\Tests\TestCase;
 
 class SeedCommandTest extends TestCase
 {

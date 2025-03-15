@@ -1,10 +1,10 @@
 <?php
 
-namespace InterNACHI\Modular\Tests\Commands;
+namespace Azzarip\Domains\Tests\Commands;
 
-use InterNACHI\Modular\Console\Commands\ModulesList;
-use InterNACHI\Modular\Tests\Concerns\WritesToAppFilesystem;
-use InterNACHI\Modular\Tests\TestCase;
+use Azzarip\Domains\Console\Commands\ModulesList;
+use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
+use Azzarip\Domains\Tests\TestCase;
 
 class ModulesListTest extends TestCase
 {

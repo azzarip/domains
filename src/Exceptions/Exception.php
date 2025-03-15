@@ -1,6 +1,6 @@
 <?php
 
-namespace InterNACHI\Modular\Exceptions;
+namespace Azzarip\Domains\Exceptions;
 
 class Exception extends \Exception
 {

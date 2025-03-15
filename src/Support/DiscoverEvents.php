@@ -1,8 +1,8 @@
 <?php
 
-namespace InterNACHI\Modular\Support;
+namespace Azzarip\Domains\Support;
 
-use InterNACHI\Modular\Support\Facades\Modules;
+use Azzarip\Domains\Support\Facades\Modules;
 use SplFileInfo;
 
 class DiscoverEvents extends \Illuminate\Foundation\Events\DiscoverEvents

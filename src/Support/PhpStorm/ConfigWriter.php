@@ -1,9 +1,9 @@
 <?php
 
-namespace InterNACHI\Modular\Support\PhpStorm;
+namespace Azzarip\Domains\Support\PhpStorm;
 
 use DOMDocument;
-use InterNACHI\Modular\Support\ModuleRegistry;
+use Azzarip\Domains\Support\ModuleRegistry;
 use SimpleXMLElement;
 
 abstract class ConfigWriter
@@ -19,7 +19,7 @@ abstract class ConfigWriter
 	protected $config_path;
 	
 	/**
-	 * @var \InterNACHI\Modular\Support\ModuleRegistry
+	 * @var \Azzarip\Domains\Support\ModuleRegistry
 	 */
 	protected $module_registry;
 	

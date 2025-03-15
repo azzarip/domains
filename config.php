@@ -18,7 +18,7 @@ return [
 	|
 	*/
 	
-	'modules_namespace' => 'Modules',
+	'domains_namespace' => 'Domains',
 	
 	/*
 	|--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
 	|
 	*/
 	
-	'modules_directory' => 'app-modules',
+	'modules_directory' => 'domains',
 	
 	/*
 	|--------------------------------------------------------------------------

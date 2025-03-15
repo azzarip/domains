@@ -1,11 +1,11 @@
 <?php
 
-namespace InterNACHI\Modular\Console\Commands;
+namespace Azzarip\Domains\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use InterNACHI\Modular\Support\ModuleConfig;
-use InterNACHI\Modular\Support\ModuleRegistry;
+use Azzarip\Domains\Support\ModuleConfig;
+use Azzarip\Domains\Support\ModuleRegistry;
 
 class ModulesList extends Command
 {

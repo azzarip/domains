@@ -1,6 +1,6 @@
 <?php
 
-namespace InterNACHI\Modular\Support;
+namespace Azzarip\Domains\Support;
 
 use Closure;
 use Illuminate\Console\Application as Artisan;
@@ -16,12 +16,12 @@ use Illuminate\Support\Str;
 use Illuminate\Translation\Translator;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory as ViewFactory;
-use InterNACHI\Modular\Console\Commands\Make\MakeMigration;
-use InterNACHI\Modular\Console\Commands\Make\MakeModule;
-use InterNACHI\Modular\Console\Commands\ModulesCache;
-use InterNACHI\Modular\Console\Commands\ModulesClear;
-use InterNACHI\Modular\Console\Commands\ModulesList;
-use InterNACHI\Modular\Console\Commands\ModulesSync;
+use Azzarip\Domains\Console\Commands\Make\MakeMigration;
+use Azzarip\Domains\Console\Commands\Make\MakeModule;
+use Azzarip\Domains\Console\Commands\ModulesCache;
+use Azzarip\Domains\Console\Commands\ModulesClear;
+use Azzarip\Domains\Console\Commands\ModulesList;
+use Azzarip\Domains\Console\Commands\ModulesSync;
 use Livewire\Livewire;
 use ReflectionClass;
 use Symfony\Component\Finder\SplFileInfo;

@@ -1,6 +1,6 @@
 <?php
 
-namespace InterNACHI\Modular\Console\Commands\Make;
+namespace Azzarip\Domains\Console\Commands\Make;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Config;

@@ -1,11 +1,11 @@
 <?php
 
-namespace InterNACHI\Modular\Tests\Commands\Make;
+namespace Azzarip\Domains\Tests\Commands\Make;
 
-use InterNACHI\Modular\Console\Commands\Make\MakeLivewire;
-use InterNACHI\Modular\Tests\Concerns\TestsMakeCommands;
-use InterNACHI\Modular\Tests\Concerns\WritesToAppFilesystem;
-use InterNACHI\Modular\Tests\TestCase;
+use Azzarip\Domains\Console\Commands\Make\MakeLivewire;
+use Azzarip\Domains\Tests\Concerns\TestsMakeCommands;
+use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
+use Azzarip\Domains\Tests\TestCase;
 use Livewire\Livewire;
 use Livewire\LivewireManager;
 use Livewire\LivewireServiceProvider;

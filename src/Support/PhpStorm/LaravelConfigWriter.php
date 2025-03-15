@@ -1,8 +1,8 @@
 <?php
 
-namespace InterNACHI\Modular\Support\PhpStorm;
+namespace Azzarip\Domains\Support\PhpStorm;
 
-use InterNACHI\Modular\Support\ModuleConfig;
+use Azzarip\Domains\Support\ModuleConfig;
 use SimpleXMLElement;
 
 class LaravelConfigWriter extends ConfigWriter

@@ -1,9 +1,9 @@
 <?php
 
-namespace InterNACHI\Modular\Console\Commands\Database;
+namespace Azzarip\Domains\Console\Commands\Database;
 
 use Illuminate\Support\Str;
-use InterNACHI\Modular\Console\Commands\Modularize;
+use Azzarip\Domains\Console\Commands\Modularize;
 
 class SeedCommand extends \Illuminate\Database\Console\Seeds\SeedCommand
 {

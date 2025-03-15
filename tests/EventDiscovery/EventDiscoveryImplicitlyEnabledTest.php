@@ -3,12 +3,12 @@
 // Because we need to preload files before TestBench boots the app,
 // this needs to be its own isolated test file.
 
-namespace InterNACHI\Modular\Tests\EventDiscovery {
+namespace Azzarip\Domains\Tests\EventDiscovery {
 	use App\EventDiscoveryImplicitlyEnabledTestProvider;
 	use Illuminate\Support\Facades\Event;
-	use InterNACHI\Modular\Support\Facades\Modules;
-	use InterNACHI\Modular\Tests\Concerns\PreloadsAppModules;
-	use InterNACHI\Modular\Tests\TestCase;
+	use Azzarip\Domains\Support\Facades\Modules;
+	use Azzarip\Domains\Tests\Concerns\PreloadsAppModules;
+	use Azzarip\Domains\Tests\TestCase;
 	
 	class EventDiscoveryImplicitlyEnabledTest extends TestCase
 	{

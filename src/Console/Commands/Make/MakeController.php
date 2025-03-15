@@ -1,6 +1,6 @@
 <?php
 
-namespace InterNACHI\Modular\Console\Commands\Make;
+namespace Azzarip\Domains\Console\Commands\Make;
 
 use Illuminate\Routing\Console\ControllerMakeCommand;
 use Illuminate\Support\Str;

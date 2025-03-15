@@ -1,15 +1,15 @@
 <?php
 
-namespace InterNACHI\Modular\Tests;
+namespace Azzarip\Domains\Tests;
 
 use Illuminate\Encryption\Encrypter;
-use InterNACHI\Modular\Console\Commands\Make\MakeModule;
-use InterNACHI\Modular\Support\DatabaseFactoryHelper;
-use InterNACHI\Modular\Support\Facades\Modules;
-use InterNACHI\Modular\Support\ModularEventServiceProvider;
-use InterNACHI\Modular\Support\ModularizedCommandsServiceProvider;
-use InterNACHI\Modular\Support\ModularServiceProvider;
-use InterNACHI\Modular\Support\ModuleConfig;
+use Azzarip\Domains\Console\Commands\Make\MakeModule;
+use Azzarip\Domains\Support\DatabaseFactoryHelper;
+use Azzarip\Domains\Support\Facades\Modules;
+use Azzarip\Domains\Support\ModularEventServiceProvider;
+use Azzarip\Domains\Support\ModularizedCommandsServiceProvider;
+use Azzarip\Domains\Support\ModularServiceProvider;
+use Azzarip\Domains\Support\ModuleConfig;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra

@@ -1,12 +1,12 @@
 <?php
 
-namespace InterNACHI\Modular\Console\Commands\Make;
+namespace Azzarip\Domains\Console\Commands\Make;
 
 use Illuminate\Support\Str;
 
 trait Modularize
 {
-	use \InterNACHI\Modular\Console\Commands\Modularize;
+	use \Azzarip\Domains\Console\Commands\Modularize;
 	
 	protected function getDefaultNamespace($rootNamespace)
 	{

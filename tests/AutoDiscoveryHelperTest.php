@@ -1,16 +1,16 @@
 <?php
 
-namespace InterNACHI\Modular\Tests;
+namespace Azzarip\Domains\Tests;
 
 use Illuminate\Filesystem\Filesystem;
-use InterNACHI\Modular\Console\Commands\Make\MakeCommand;
-use InterNACHI\Modular\Console\Commands\Make\MakeComponent;
-use InterNACHI\Modular\Console\Commands\Make\MakeListener;
-use InterNACHI\Modular\Console\Commands\Make\MakeLivewire;
-use InterNACHI\Modular\Console\Commands\Make\MakeModel;
-use InterNACHI\Modular\Support\AutoDiscoveryHelper;
-use InterNACHI\Modular\Support\ModuleRegistry;
-use InterNACHI\Modular\Tests\Concerns\WritesToAppFilesystem;
+use Azzarip\Domains\Console\Commands\Make\MakeCommand;
+use Azzarip\Domains\Console\Commands\Make\MakeComponent;
+use Azzarip\Domains\Console\Commands\Make\MakeListener;
+use Azzarip\Domains\Console\Commands\Make\MakeLivewire;
+use Azzarip\Domains\Console\Commands\Make\MakeModel;
+use Azzarip\Domains\Support\AutoDiscoveryHelper;
+use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
 use Livewire\Mechanisms\Mechanism;

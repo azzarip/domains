@@ -1,12 +1,12 @@
 <?php
 
-namespace InterNACHI\Modular\Tests\EventDiscovery;
+namespace Azzarip\Domains\Tests\EventDiscovery;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider;
 use Illuminate\Support\Facades\Event;
-use InterNACHI\Modular\Support\Facades\Modules;
-use InterNACHI\Modular\Tests\Concerns\PreloadsAppModules;
-use InterNACHI\Modular\Tests\TestCase;
+use Azzarip\Domains\Support\Facades\Modules;
+use Azzarip\Domains\Tests\Concerns\PreloadsAppModules;
+use Azzarip\Domains\Tests\TestCase;
 
 class Laravel11EventDiscoveryImplicitlyEnabledTest extends TestCase
 {

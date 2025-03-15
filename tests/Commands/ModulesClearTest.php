@@ -1,11 +1,11 @@
 <?php
 
-namespace InterNACHI\Modular\Tests\Commands;
+namespace Azzarip\Domains\Tests\Commands;
 
-use InterNACHI\Modular\Console\Commands\ModulesCache;
-use InterNACHI\Modular\Console\Commands\ModulesClear;
-use InterNACHI\Modular\Tests\Concerns\WritesToAppFilesystem;
-use InterNACHI\Modular\Tests\TestCase;
+use Azzarip\Domains\Console\Commands\ModulesCache;
+use Azzarip\Domains\Console\Commands\ModulesClear;
+use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
+use Azzarip\Domains\Tests\TestCase;
 
 class ModulesClearTest extends TestCase
 {

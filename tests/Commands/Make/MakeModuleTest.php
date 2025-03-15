@@ -1,11 +1,11 @@
 <?php
 
-namespace InterNACHI\Modular\Tests\Commands\Make;
+namespace Azzarip\Domains\Tests\Commands\Make;
 
-use InterNACHI\Modular\Console\Commands\Make\MakeModule;
-use InterNACHI\Modular\Support\Facades\Modules;
-use InterNACHI\Modular\Tests\Concerns\WritesToAppFilesystem;
-use InterNACHI\Modular\Tests\TestCase;
+use Azzarip\Domains\Console\Commands\Make\MakeModule;
+use Azzarip\Domains\Support\Facades\Modules;
+use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
+use Azzarip\Domains\Tests\TestCase;
 
 class MakeModuleTest extends TestCase
 {

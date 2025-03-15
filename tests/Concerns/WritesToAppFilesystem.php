@@ -1,6 +1,6 @@
 <?php
 
-namespace InterNACHI\Modular\Tests\Concerns;
+namespace Azzarip\Domains\Tests\Concerns;
 
 use Illuminate\Filesystem\Filesystem;
 use PHPUnit\Framework\Attributes\Before;
