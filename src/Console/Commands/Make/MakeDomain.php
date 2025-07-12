@@ -204,21 +204,11 @@ class MakeDomain extends Command
 			$this->line(" - Adding path repository for <info>{$domain_config['url']}</info>");
 			$has_changes = true;
 			
-			if (Arr::isAssoc($definition['repositories'])) {
-				$definition['repositories'][$this->domain_name] = $domain_config;
-			} else {
-				$definition['repositories'][] = $domain_config;
-			}
+			$definition['repositories'][] = $domain_config;
+
 		}
 		
-		if (! isset($definition['require'][$this->composer_name])) {
-			$this->line(" - Adding require statement for <info>{$this->composer_name}:*</info>");
-			$has_changes = true;
-			
-			$definition['require']["{$this->composer_namespace}/{$this->domain_name}"] = '*';
-			$definition['require'] = $this->sortComposerPackages($definition['require']);
-		}
-		
+
 		if ($has_changes) {
 			$json_file->write($definition);
 			$this->line(" - Wrote to <info>{$json_file->getPath()}</info>");
