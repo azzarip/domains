@@ -6,5 +6,5 @@ Route::group([
     'middleware' => 'web',
     'domain' => config('domains.StubDomainKey.url'),
 ], function () {
-    Route::view('/', 'StubDomainNamespace::homepage');
+    Route::view('/', 'StubDomainKey::homepage');
 });

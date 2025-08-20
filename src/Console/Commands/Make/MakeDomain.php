@@ -16,7 +16,7 @@ use Symfony\Component\Console\Terminal;
 class MakeDomain extends Command
 {
 	protected $signature = 'make:domain
-		{key : The key of the module}
+		{key : The key of the domain}
 		{--accept-default-namespace : Skip default namespace confirmation}';
 	
 	protected $description = 'Create a new Laravel domain';
@@ -33,15 +33,8 @@ class MakeDomain extends Command
 	 *
 	 * @var string
 	 */
-	protected $domain_namespace;
-	
-	/**
-	 * This is the composer namespace for all modules
-	 *
-	 * @var string
-	 */
-	protected $composer_namespace;
-	
+	protected $domain_namespace = "Domains";
+		
 	/**
 	 * This is the name of the module
 	 *
@@ -86,9 +79,7 @@ class MakeDomain extends Command
 	{
 		$this->domain_key = Str::kebab($this->argument('key'));
 		$this->class_name_prefix = Str::studly($this->argument('key'));
-		$this->domain_namespace = 'Domains';
-		$this->composer_namespace = 'Domains';
-		$this->composer_name = "{$this->composer_namespace}/{$this->domain_key}";
+		$this->composer_name = "domains/{$this->domain_key}";
 		$this->base_path = $this->domain_registry->getDomainsPath().'/'.$this->domain_key;
 		
 		$this->setUpStyles();
@@ -130,7 +121,6 @@ class MakeDomain extends Command
 			'StubBasePath' => $this->base_path,
 			'StubDomainKey' => $this->domain_key,
 			'StubDomainNamespace' => $this->domain_namespace,
-			'StubComposerNamespace' => $this->composer_namespace,
 			'StubModuleNameSingular' => Str::singular($this->domain_namespace),
 			'StubModuleNamePlural' => Str::plural($this->domain_namespace),
 			'StubClassNamePrefix' => $this->class_name_prefix,
@@ -279,7 +269,7 @@ class MakeDomain extends Command
 			'composer.json' => $this->pathToStub($composer_stub),
 			'src/Providers/StubClassNamePrefixServiceProvider.php' => $this->pathToStub('ServiceProvider.php'),
 			'tests/Feature/Providers/StubClassNamePrefixServiceProviderTest.php' => $this->pathToStub('ServiceProviderTest.php'),
-			'routes/StubDomain-routes.php' => $this->pathToStub('web-routes.php'),
+			'routes/StubDomainKey-routes.php' => $this->pathToStub('web-routes.php'),
 			'resources/views/homepage.blade.php' => $this->pathToStub('view.blade.php'),
 		];
 	}
