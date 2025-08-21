@@ -1,0 +1,3 @@
+{{ $slot }}
+
+<x-footer />

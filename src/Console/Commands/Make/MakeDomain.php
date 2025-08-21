@@ -271,6 +271,8 @@ class MakeDomain extends Command
 			'tests/Feature/Providers/StubClassNamePrefixServiceProviderTest.php' => $this->pathToStub('ServiceProviderTest.php'),
 			'routes/StubDomainKey-routes.php' => $this->pathToStub('web-routes.php'),
 			'resources/views/homepage.blade.php' => $this->pathToStub('view.blade.php'),
+			'resources/views/theme.blade.php' => $this->pathToStub('theme.blade.php'),
+			'sitemap.php' => $this->pathToStub('sitemap.php'),
 		];
 	}
 	

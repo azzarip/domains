@@ -9,16 +9,16 @@ use Symfony\Component\Console\Input\InputOption;
 
 trait Modularize
 {
-	protected function module(): ?ModuleConfig
+	protected function domain(): ?ModuleConfig
 	{
-		if ($name = $this->option('module')) {
+		if ($name = $this->option('domain')) {
 			$registry = $this->getLaravel()->make(ModuleRegistry::class);
 			
 			if ($module = $registry->module($name)) {
 				return $module;
 			}
 			
-			throw new InvalidOptionException(sprintf('The "%s" module does not exist.', $name));
+			throw new InvalidOptionException(sprintf('The "%s" domain does not exist.', $name));
 		}
 		
 		return null;
@@ -30,7 +30,7 @@ trait Modularize
 		
 		$this->getDefinition()->addOption(
 			new InputOption(
-				'--module',
+				'--domain',
 				null,
 				InputOption::VALUE_REQUIRED,
 				'Run inside an application module'
