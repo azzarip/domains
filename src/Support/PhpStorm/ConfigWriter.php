@@ -3,7 +3,7 @@
 namespace Azzarip\Domains\Support\PhpStorm;
 
 use DOMDocument;
-use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Support\DomainRegistry;
 use SimpleXMLElement;
 
 abstract class ConfigWriter
@@ -19,13 +19,13 @@ abstract class ConfigWriter
 	protected $config_path;
 	
 	/**
-	 * @var \Azzarip\Domains\Support\ModuleRegistry
+	 * @var \Azzarip\Domains\Support\DomainRegistry
 	 */
 	protected $module_registry;
 	
 	abstract public function write(): bool;
 	
-	public function __construct($config_path, ModuleRegistry $module_registry)
+	public function __construct($config_path, DomainRegistry $module_registry)
 	{
 		$this->config_path = $config_path;
 		$this->module_registry = $module_registry;

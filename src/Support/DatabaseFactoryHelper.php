@@ -13,7 +13,7 @@ class DatabaseFactoryHelper
 	protected ?string $namespace = null;
 	
 	public function __construct(
-		protected ModuleRegistry $registry
+		protected DomainRegistry $registry
 	) {
 	}
 	

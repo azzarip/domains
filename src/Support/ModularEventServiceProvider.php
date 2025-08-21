@@ -49,7 +49,7 @@ class ModularEventServiceProvider extends ServiceProvider
 	
 	public function discoverEvents()
 	{
-		$modules = $this->app->make(ModuleRegistry::class);
+		$modules = $this->app->make(DomainRegistry::class);
 		
 		return $this->app->make(AutoDiscoveryHelper::class)
 			->listenerDirectoryFinder()

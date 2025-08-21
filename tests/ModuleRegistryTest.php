@@ -3,10 +3,10 @@
 namespace Azzarip\Domains\Tests;
 
 use Azzarip\Domains\Support\ModuleConfig;
-use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Support\DomainRegistry;
 use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
 
-class ModuleRegistryTest extends TestCase
+class DomainRegistryTest extends TestCase
 {
 	use WritesToAppFilesystem;
 	
@@ -15,7 +15,7 @@ class ModuleRegistryTest extends TestCase
 		$this->makeModule('test-module');
 		$this->makeModule('test-module-two');
 		
-		$registry = $this->app->make(ModuleRegistry::class);
+		$registry = $this->app->make(DomainRegistry::class);
 		
 		$this->assertInstanceOf(ModuleConfig::class, $registry->module('test-module'));
 		$this->assertInstanceOf(ModuleConfig::class, $registry->module('test-module-two'));

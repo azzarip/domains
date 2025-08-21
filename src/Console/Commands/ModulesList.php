@@ -5,7 +5,7 @@ namespace Azzarip\Domains\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Azzarip\Domains\Support\ModuleConfig;
-use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Support\DomainRegistry;
 
 class ModulesList extends Command
 {
@@ -13,7 +13,7 @@ class ModulesList extends Command
 	
 	protected $description = 'List all modules';
 	
-	public function handle(ModuleRegistry $registry)
+	public function handle(DomainRegistry $registry)
 	{
 		$namespace_title = 'Namespace';
 		

@@ -5,7 +5,7 @@ namespace Azzarip\Domains\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Azzarip\Domains\Support\ModuleConfig;
-use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Support\DomainRegistry;
 use LogicException;
 use Throwable;
 
@@ -15,7 +15,7 @@ class ModulesCache extends Command
 	
 	protected $description = 'Create a cache file for faster module loading';
 	
-	public function handle(ModuleRegistry $registry, Filesystem $filesystem)
+	public function handle(DomainRegistry $registry, Filesystem $filesystem)
 	{
 		$this->call(ModulesClear::class);
 		

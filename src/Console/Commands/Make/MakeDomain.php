@@ -9,7 +9,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Azzarip\Domains\Console\Commands\DomainsClear;
-use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Support\DomainRegistry;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Terminal;
 
@@ -63,11 +63,11 @@ class MakeDomain extends Command
 	protected $filesystem;
 	
 	/**
-	 * @var \Azzarip\Domains\Support\ModuleRegistry
+	 * @var \Azzarip\Domains\Support\DomainRegistry
 	 */
 	protected $domain_registry;
 	
-	public function __construct(Filesystem $filesystem, ModuleRegistry $domain_registry)
+	public function __construct(Filesystem $filesystem, DomainRegistry $domain_registry)
 	{
 		parent::__construct();
 		

@@ -9,7 +9,7 @@ class AutoDiscoveryHelper
 	protected string $base_path;
 	
 	public function __construct(
-		protected ModuleRegistry $module_registry,
+		protected DomainRegistry $module_registry,
 		protected Filesystem $filesystem
 	) {
 		$this->base_path = $module_registry->getModulesPath();

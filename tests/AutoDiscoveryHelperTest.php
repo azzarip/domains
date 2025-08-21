@@ -9,7 +9,7 @@ use Azzarip\Domains\Console\Commands\Make\MakeListener;
 use Azzarip\Domains\Console\Commands\Make\MakeLivewire;
 use Azzarip\Domains\Console\Commands\Make\MakeModel;
 use Azzarip\Domains\Support\AutoDiscoveryHelper;
-use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Support\DomainRegistry;
 use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
@@ -33,7 +33,7 @@ class AutoDiscoveryHelperTest extends TestCase
 		$this->module1 = $this->makeModule('test-module');
 		$this->module2 = $this->makeModule('test-module-two');
 		$this->helper = new AutoDiscoveryHelper(
-			new ModuleRegistry($this->getApplicationBasePath().'/app-modules', ''),
+			new DomainRegistry($this->getApplicationBasePath().'/app-modules', ''),
 			new Filesystem()
 		);
 	}

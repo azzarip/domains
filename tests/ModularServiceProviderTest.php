@@ -3,7 +3,7 @@
 namespace Azzarip\Domains\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Support\DomainRegistry;
 use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
 
 class ModularServiceProviderTest extends TestCase
@@ -12,10 +12,10 @@ class ModularServiceProviderTest extends TestCase
 	
 	public function test_registry_is_bound_as_a_singleton(): void
 	{
-		$registry = $this->app->make(ModuleRegistry::class);
-		$registry2 = $this->app->make(ModuleRegistry::class);
+		$registry = $this->app->make(DomainRegistry::class);
+		$registry2 = $this->app->make(DomainRegistry::class);
 		
-		$this->assertInstanceOf(ModuleRegistry::class, $registry);
+		$this->assertInstanceOf(DomainRegistry::class, $registry);
 		$this->assertSame($registry, $registry2);
 	}
 	

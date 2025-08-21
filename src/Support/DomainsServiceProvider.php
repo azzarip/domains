@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Factories\Factory as EloquentFactory;
 
 class DomainsServiceProvider extends ServiceProvider
 {
-	protected ?ModuleRegistry $registry = null;
+	protected ?DomainRegistry $registry = null;
 	
 	protected ?AutoDiscoveryHelper $auto_discovery_helper = null;
 	
@@ -43,8 +43,8 @@ class DomainsServiceProvider extends ServiceProvider
 	
 	public function register(): void
 	{	
-		$this->app->singleton(ModuleRegistry::class, function() {
-			return new ModuleRegistry(
+		$this->app->singleton(DomainRegistry::class, function() {
+			return new DomainRegistry(
 				$this->getDomainsBasePath(),
 				$this->app->bootstrapPath('cache/modules.php')
 			);
@@ -69,9 +69,9 @@ class DomainsServiceProvider extends ServiceProvider
 		$this->bootLivewireComponents();
 	}
 	
-	protected function registry(): ModuleRegistry
+	protected function registry(): DomainRegistry
 	{
-		return $this->registry ??= $this->app->make(ModuleRegistry::class);
+		return $this->registry ??= $this->app->make(DomainRegistry::class);
 	}
 	
 	protected function autoDiscoveryHelper(): AutoDiscoveryHelper
@@ -240,7 +240,7 @@ class DomainsServiceProvider extends ServiceProvider
 			return;
 		}
 		
-		$namespaces = app(ModuleRegistry::class)
+		$namespaces = app(DomainRegistry::class)
 			->modules()
 			->flatMap(fn(ModuleConfig $config) => $config->namespaces)
 			->reject(fn($ns) => Str::endsWith($ns, ['Tests\\', 'Database\\Factories\\', 'Database\\Seeders\\']))

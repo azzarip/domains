@@ -5,7 +5,7 @@ namespace Azzarip\Domains\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Azzarip\Domains\Support\FinderCollection;
-use Azzarip\Domains\Support\ModuleRegistry;
+use Azzarip\Domains\Support\DomainRegistry;
 use Azzarip\Domains\Support\PhpStorm\LaravelConfigWriter;
 use Azzarip\Domains\Support\PhpStorm\PhpFrameworkWriter;
 use Azzarip\Domains\Support\PhpStorm\ProjectImlWriter;
@@ -24,11 +24,11 @@ class ModulesSync extends Command
 	protected $filesystem;
 	
 	/**
-	 * @var \Azzarip\Domains\Support\ModuleRegistry
+	 * @var \Azzarip\Domains\Support\DomainRegistry
 	 */
 	protected $registry;
 	
-	public function handle(ModuleRegistry $registry, Filesystem $filesystem)
+	public function handle(DomainRegistry $registry, Filesystem $filesystem)
 	{
 		$this->filesystem = $filesystem;
 		$this->registry = $registry;
