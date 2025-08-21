@@ -241,7 +241,7 @@ class DomainsServiceProvider extends ServiceProvider
 		}
 		
 		$namespaces = app(DomainRegistry::class)
-			->modules()
+			->domains()
 			->flatMap(fn(ModuleConfig $config) => $config->namespaces)
 			->reject(fn($ns) => Str::endsWith($ns, ['Tests\\', 'Database\\Factories\\', 'Database\\Seeders\\']))
 			->values()
