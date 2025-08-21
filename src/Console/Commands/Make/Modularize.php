@@ -11,11 +11,11 @@ trait Modularize
 	protected function getDefaultNamespace($rootNamespace)
 	{
 		$namespace = parent::getDefaultNamespace($rootNamespace);
-		$module = $this->module();
+		$domain = $this->domain();
 		
-		if ($module && false === strpos($rootNamespace, $module->namespaces->first())) {
+		if ($domain && false === strpos($rootNamespace, $domain->namespaces->first())) {
 			$find = rtrim($rootNamespace, '\\');
-			$replace = rtrim($module->namespaces->first(), '\\');
+			$replace = rtrim($domain->namespaces->first(), '\\');
 			$namespace = str_replace($find, $replace, $namespace);
 		}
 		
@@ -26,8 +26,8 @@ trait Modularize
 	{
 		$name = ltrim($name, '\\/');
 		
-		if ($module = $this->module()) {
-			if (Str::startsWith($name, $module->namespaces->first())) {
+		if ($domain = $this->domain()) {
+			if (Str::startsWith($name, $domain->namespaces->first())) {
 				return $name;
 			}
 		}
@@ -37,14 +37,14 @@ trait Modularize
 	
 	protected function qualifyModel(string $model)
 	{
-		if ($module = $this->module()) {
+		if ($domain = $this->domain()) {
 			$model = str_replace('/', '\\', ltrim($model, '\\/'));
 			
-			if (Str::startsWith($model, $module->namespace())) {
+			if (Str::startsWith($model, $domain->namespace())) {
 				return $model;
 			}
 			
-			return $module->qualify('Models\\'.$model);
+			return $domain->qualify('Models\\'.$model);
 		}
 		
 		return parent::qualifyModel($model);
@@ -52,18 +52,18 @@ trait Modularize
 	
 	protected function getPath($name)
 	{
-		if ($module = $this->module()) {
-			$name = Str::replaceFirst($module->namespaces->first(), '', $name);
+		if ($domain = $this->domain()) {
+			$name = Str::replaceFirst($domain->namespaces->first(), '', $name);
 		}
 		
 		$path = parent::getPath($name);
 		
-		if ($module) {
+		if ($domain) {
 			// Set up our replacements as a [find -> replace] array
 			$replacements = [
-				$this->laravel->path() => $module->namespaces->keys()->first(),
-				$this->laravel->basePath('tests/Tests') => $module->path('tests'),
-				$this->laravel->databasePath() => $module->path('database'),
+				$this->laravel->path() => $domain->namespaces->keys()->first(),
+				$this->laravel->basePath('tests/Tests') => $domain->path('tests'),
+				$this->laravel->databasePath() => $domain->path('database'),
 			];
 			
 			// Normalize all our paths for compatibility's sake
@@ -83,9 +83,9 @@ trait Modularize
 	
 	public function call($command, array $arguments = [])
 	{
-		// Pass the --module flag on to subsequent commands
-		if ($module = $this->option('module')) {
-			$arguments['--module'] = $module;
+		// Pass the --domain flag on to subsequent commands
+		if ($domain = $this->option('domain')) {
+			$arguments['--domain'] = $domain;
 		}
 		
 		return $this->runCommand($command, $arguments, $this->output);

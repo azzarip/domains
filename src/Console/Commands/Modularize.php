@@ -14,8 +14,8 @@ trait Modularize
 		if ($name = $this->option('domain')) {
 			$registry = $this->getLaravel()->make(DomainRegistry::class);
 			
-			if ($module = $registry->module($name)) {
-				return $module;
+			if ($domain = $registry->domain($name)) {
+				return $domain;
 			}
 			
 			throw new InvalidOptionException(sprintf('The "%s" domain does not exist.', $name));
