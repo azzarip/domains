@@ -15,6 +15,6 @@ class DomainsClear extends Command
 	public function handle(Filesystem $filesystem, DomainRegistry $registry)
 	{
 		$filesystem->delete($registry->getCachePath());
-		$this->info('Module cache cleared!');
+		$this->info('Domain cache cleared!');
 	}
 }
