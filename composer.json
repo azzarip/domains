@@ -52,7 +52,7 @@
         "laravel": {
             "providers": [
                 "Azzarip\\Domains\\Support\\DomainsServiceProvider",
-                "Azzarip\\Domains\\Support\\ModularizedCommandsServiceProvider",
+                "Azzarip\\Domains\\Support\\DomainsCommandsServiceProvider",
                 "Azzarip\\Domains\\Support\\ModularEventServiceProvider"
             ],
             "aliases": {

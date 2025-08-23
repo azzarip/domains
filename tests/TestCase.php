@@ -7,7 +7,7 @@ use Azzarip\Domains\Console\Commands\Make\MakeModule;
 use Azzarip\Domains\Support\DatabaseFactoryHelper;
 use Azzarip\Domains\Support\Facades\Modules;
 use Azzarip\Domains\Support\ModularEventServiceProvider;
-use Azzarip\Domains\Support\ModularizedCommandsServiceProvider;
+use Azzarip\Domains\Support\DomainsCommandsServiceProvider;
 use Azzarip\Domains\Support\ModularServiceProvider;
 use Azzarip\Domains\Support\ModuleConfig;
 use Orchestra\Testbench\TestCase as Orchestra;
@@ -59,7 +59,7 @@ abstract class TestCase extends Orchestra
 	{
 		return [
 			ModularServiceProvider::class,
-			ModularizedCommandsServiceProvider::class,
+			DomainsCommandsServiceProvider::class,
 			ModularEventServiceProvider::class,
 		];
 	}

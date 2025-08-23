@@ -33,7 +33,7 @@ use Azzarip\Domains\Console\Commands\Make\MakeSeeder;
 use Azzarip\Domains\Console\Commands\Make\MakeTest;
 use Livewire\Commands as Livewire;
 
-class ModularizedCommandsServiceProvider extends ServiceProvider
+class DomainsCommandsServiceProvider extends ServiceProvider
 {
 	protected array $overrides = [
 		'command.cast.make' => MakeCast::class,
@@ -58,7 +58,6 @@ class ModularizedCommandsServiceProvider extends ServiceProvider
 		'command.seeder.make' => MakeSeeder::class,
 		'command.test.make' => MakeTest::class,
 		'command.component.make' => MakeComponent::class,
-		'command.seed' => SeedCommand::class,
 	];
 	
 	public function register(): void
@@ -69,7 +68,6 @@ class ModularizedCommandsServiceProvider extends ServiceProvider
 		$this->app->booted(function() {
 			Artisan::starting(function(Application $artisan) {
 				$this->registerMakeCommandOverrides();
-				$this->registerMigrationCommandOverrides();
 				$this->registerLivewireOverrides($artisan);
 			});
 		});
@@ -81,19 +79,6 @@ class ModularizedCommandsServiceProvider extends ServiceProvider
 			$this->app->singleton($alias, $class_name);
 			$this->app->singleton(get_parent_class($class_name), $class_name);
 		}
-	}
-	
-	protected function registerMigrationCommandOverrides()
-	{
-		// Laravel 8
-		$this->app->singleton('command.migrate.make', function($app) {
-			return new MakeMigration($app['migration.creator'], $app['composer']);
-		});
-		
-		// Laravel 9
-		$this->app->singleton(OriginalMakeMigrationCommand::class, function($app) {
-			return new MakeMigration($app['migration.creator'], $app['composer']);
-		});
 	}
 	
 	protected function registerLivewireOverrides(Artisan $artisan)
