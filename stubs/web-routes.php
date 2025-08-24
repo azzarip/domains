@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'middleware' => 'web',
-    'domain' => config('domains.StubDomainKey.url'),
-], function () {
-    Route::view('/', 'StubDomainKey::homepage');
+	'middleware' => 'web',
+	'domain' => config('domains.StubDomainKey.url'),
+], function() {
+	Route::view('/', 'StubDomainKey::homepage');
 });

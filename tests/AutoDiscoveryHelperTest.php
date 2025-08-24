@@ -2,7 +2,6 @@
 
 namespace Azzarip\Domains\Tests;
 
-use Illuminate\Filesystem\Filesystem;
 use Azzarip\Domains\Console\Commands\Make\MakeCommand;
 use Azzarip\Domains\Console\Commands\Make\MakeComponent;
 use Azzarip\Domains\Console\Commands\Make\MakeListener;
@@ -11,6 +10,7 @@ use Azzarip\Domains\Console\Commands\Make\MakeModel;
 use Azzarip\Domains\Support\AutoDiscoveryHelper;
 use Azzarip\Domains\Support\DomainRegistry;
 use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
+use Illuminate\Filesystem\Filesystem;
 use Livewire\Livewire;
 use Livewire\LivewireServiceProvider;
 use Livewire\Mechanisms\Mechanism;

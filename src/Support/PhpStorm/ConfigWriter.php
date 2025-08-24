@@ -2,8 +2,8 @@
 
 namespace Azzarip\Domains\Support\PhpStorm;
 
-use DOMDocument;
 use Azzarip\Domains\Support\DomainRegistry;
+use DOMDocument;
 use SimpleXMLElement;
 
 abstract class ConfigWriter

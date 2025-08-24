@@ -2,10 +2,10 @@
 
 namespace Azzarip\Domains\Console\Commands;
 
+use Azzarip\Domains\Support\DomainRegistry;
+use Azzarip\Domains\Support\ModuleConfig;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Azzarip\Domains\Support\ModuleConfig;
-use Azzarip\Domains\Support\DomainRegistry;
 
 class ModulesList extends Command
 {

@@ -2,9 +2,6 @@
 
 namespace Azzarip\Domains\Support;
 
-use Illuminate\Console\Application;
-use Illuminate\Console\Application as Artisan;
-use Illuminate\Support\ServiceProvider;
 use Azzarip\Domains\Console\Commands\Make\MakeCast;
 use Azzarip\Domains\Console\Commands\Make\MakeChannel;
 use Azzarip\Domains\Console\Commands\Make\MakeCommand;
@@ -18,7 +15,6 @@ use Azzarip\Domains\Console\Commands\Make\MakeListener;
 use Azzarip\Domains\Console\Commands\Make\MakeLivewire;
 use Azzarip\Domains\Console\Commands\Make\MakeMail;
 use Azzarip\Domains\Console\Commands\Make\MakeMiddleware;
-use Azzarip\Domains\Console\Commands\Make\MakeMigration;
 use Azzarip\Domains\Console\Commands\Make\MakeModel;
 use Azzarip\Domains\Console\Commands\Make\MakeNotification;
 use Azzarip\Domains\Console\Commands\Make\MakeObserver;
@@ -29,6 +25,9 @@ use Azzarip\Domains\Console\Commands\Make\MakeResource;
 use Azzarip\Domains\Console\Commands\Make\MakeRule;
 use Azzarip\Domains\Console\Commands\Make\MakeSeeder;
 use Azzarip\Domains\Console\Commands\Make\MakeTest;
+use Illuminate\Console\Application;
+use Illuminate\Console\Application as Artisan;
+use Illuminate\Support\ServiceProvider;
 use Livewire\Commands as Livewire;
 
 class DomainsCommandsServiceProvider extends ServiceProvider
@@ -100,15 +99,13 @@ class DomainsCommandsServiceProvider extends ServiceProvider
 	}
 
 	public function boot(): void
-    {
+	{
 		$this->loadRoutesFrom(__DIR__.'/../../routes/routes.php');
 
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-	            \Azzarip\Domains\Commands\GenerateSitemap::class,
-            ]);
-        }
-    }
-	
-
+		if ($this->app->runningInConsole()) {
+			$this->commands([
+				\Azzarip\Domains\Commands\GenerateSitemap::class,
+			]);
+		}
+	}
 }

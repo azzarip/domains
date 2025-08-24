@@ -2,11 +2,11 @@
 
 namespace Azzarip\Domains\Tests;
 
-use Azzarip\Domains\Support\ModuleConfig;
 use Azzarip\Domains\Support\DomainRegistry;
+use Azzarip\Domains\Support\ModuleConfig;
 use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
 
-class DomainRegistryTest extends TestCase
+class ModuleRegistryTest extends TestCase
 {
 	use WritesToAppFilesystem;
 	

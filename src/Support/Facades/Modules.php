@@ -2,10 +2,10 @@
 
 namespace Azzarip\Domains\Support\Facades;
 
+use Azzarip\Domains\Support\DomainRegistry;
+use Azzarip\Domains\Support\ModuleConfig;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
-use Azzarip\Domains\Support\ModuleConfig;
-use Azzarip\Domains\Support\DomainRegistry;
 
 /**
  * @method static ModuleConfig|null module(string $name)

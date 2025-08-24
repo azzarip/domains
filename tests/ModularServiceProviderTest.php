@@ -2,9 +2,9 @@
 
 namespace Azzarip\Domains\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Azzarip\Domains\Support\DomainRegistry;
 use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ModularServiceProviderTest extends TestCase
 {

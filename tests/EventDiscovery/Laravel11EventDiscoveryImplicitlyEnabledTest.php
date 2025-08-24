@@ -2,11 +2,11 @@
 
 namespace Azzarip\Domains\Tests\EventDiscovery;
 
-use Illuminate\Foundation\Support\Providers\EventServiceProvider;
-use Illuminate\Support\Facades\Event;
 use Azzarip\Domains\Support\Facades\Modules;
 use Azzarip\Domains\Tests\Concerns\PreloadsAppModules;
 use Azzarip\Domains\Tests\TestCase;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider;
+use Illuminate\Support\Facades\Event;
 
 class Laravel11EventDiscoveryImplicitlyEnabledTest extends TestCase
 {

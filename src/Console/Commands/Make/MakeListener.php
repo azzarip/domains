@@ -2,9 +2,9 @@
 
 namespace Azzarip\Domains\Console\Commands\Make;
 
+use Azzarip\Domains\Support\Facades\Modules;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Foundation\Console\ListenerMakeCommand;
-use Azzarip\Domains\Support\Facades\Modules;
 
 class MakeListener extends ListenerMakeCommand
 {

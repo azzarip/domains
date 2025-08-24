@@ -2,16 +2,14 @@
 
 namespace Azzarip\Domains\Console\Commands\Make;
 
+use Azzarip\Domains\Console\Commands\DomainsClear;
+use Azzarip\Domains\Support\DomainRegistry;
 use Composer\Factory;
 use Composer\Json\JsonFile;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Azzarip\Domains\Console\Commands\DomainsClear;
-use Azzarip\Domains\Support\DomainRegistry;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
-use Symfony\Component\Console\Terminal;
 
 class MakeDomain extends Command
 {
@@ -33,7 +31,7 @@ class MakeDomain extends Command
 	 *
 	 * @var string
 	 */
-	protected $domain_namespace = "Domains";
+	protected $domain_namespace = 'Domains';
 		
 	/**
 	 * This is the name of the module
@@ -101,7 +99,6 @@ class MakeDomain extends Command
 		
 		return 0;
 	}
-	
 	
 	protected function ensureDomainsDirectoryExists()
 	{
@@ -195,10 +192,8 @@ class MakeDomain extends Command
 			$has_changes = true;
 			
 			$definition['repositories'][] = $domain_config;
-
 		}
 		
-
 		if ($has_changes) {
 			$json_file->write($definition);
 			$this->line(" - Wrote to <info>{$json_file->getPath()}</info>");

@@ -8,17 +8,16 @@ use Illuminate\Support\Facades\File;
 
 class FaviconController extends Controller
 {
-    public function __invoke(Request $request)
-    {
-        $key = request()->get('domainKey');
-        $favicon_path = resource_path("favicons/$key.ico");
-        if (! File::exists($favicon_path)) {
-            $favicon_path = resource_path('favicons/base.ico');
-        }
+	public function __invoke(Request $request)
+	{
+		$key = request()->get('domainKey');
+		$favicon_path = resource_path("favicons/$key.ico");
+		if (! File::exists($favicon_path)) {
+			$favicon_path = resource_path('favicons/base.ico');
+		}
 
-        $ico = File::get($favicon_path);
+		$ico = File::get($favicon_path);
 
-        return response($ico, 200)->header('Content-Type', 'image/x-icon');
-    }
+		return response($ico, 200)->header('Content-Type', 'image/x-icon');
+	}
 }
-        

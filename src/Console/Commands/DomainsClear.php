@@ -2,9 +2,9 @@
 
 namespace Azzarip\Domains\Console\Commands;
 
+use Azzarip\Domains\Support\DomainRegistry;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Azzarip\Domains\Support\DomainRegistry;
 
 class DomainsClear extends Command
 {

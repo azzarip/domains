@@ -2,9 +2,9 @@
 
 namespace Azzarip\Domains\Support;
 
+use Azzarip\Domains\Exceptions\CannotFindModuleForPathException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Azzarip\Domains\Exceptions\CannotFindModuleForPathException;
 use Symfony\Component\Finder\SplFileInfo;
 
 class DomainRegistry

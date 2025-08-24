@@ -2,8 +2,8 @@
 
 namespace Azzarip\Domains\Console\Commands;
 
-use Azzarip\Domains\Support\ModuleConfig;
 use Azzarip\Domains\Support\DomainRegistry;
+use Azzarip\Domains\Support\ModuleConfig;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Console\Input\InputOption;
 

@@ -2,11 +2,11 @@
 
 namespace Azzarip\Domains\Tests\Commands\Make;
 
-use Illuminate\Database\Migrations\MigrationCreator;
 use Azzarip\Domains\Console\Commands\Make\MakeMigration;
 use Azzarip\Domains\Tests\Concerns\TestsMakeCommands;
 use Azzarip\Domains\Tests\Concerns\WritesToAppFilesystem;
 use Azzarip\Domains\Tests\TestCase;
+use Illuminate\Database\Migrations\MigrationCreator;
 
 class MakeMigrationTest extends TestCase
 {

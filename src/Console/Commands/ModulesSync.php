@@ -2,14 +2,14 @@
 
 namespace Azzarip\Domains\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
-use Azzarip\Domains\Support\FinderCollection;
 use Azzarip\Domains\Support\DomainRegistry;
+use Azzarip\Domains\Support\FinderCollection;
 use Azzarip\Domains\Support\PhpStorm\LaravelConfigWriter;
 use Azzarip\Domains\Support\PhpStorm\PhpFrameworkWriter;
 use Azzarip\Domains\Support\PhpStorm\ProjectImlWriter;
 use Azzarip\Domains\Support\PhpStorm\WorkspaceWriter;
+use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\SplFileInfo;
 
 class ModulesSync extends Command
@@ -69,7 +69,7 @@ class ModulesSync extends Command
 		
 		$directory = $testsuite->addChild('directory');
 		$directory->addAttribute('suffix', 'Test.php');
-		$directory[0] = "./domains/*/tests";
+		$directory[0] = './domains/*/tests';
 		
 		$this->filesystem->put($config_path, $config->asXML());
 		$this->info('Added "Modules" PHPUnit test suite.');

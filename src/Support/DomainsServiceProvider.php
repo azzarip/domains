@@ -2,27 +2,24 @@
 
 namespace Azzarip\Domains\Support;
 
-use Closure;
-use ReflectionClass;
-use Livewire\Livewire;
-use Illuminate\Support\Str;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Translation\Translator;
-use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Finder\SplFileInfo;
-use Illuminate\Contracts\Auth\Access\Gate;
-use Illuminate\View\Factory as ViewFactory;
-use Illuminate\Database\Migrations\Migrator;
-use Illuminate\View\Compilers\BladeCompiler;
-use Illuminate\Console\Application as Artisan;
+use Azzarip\Domains\Console\Commands\DomainsClear;
+use Azzarip\Domains\Console\Commands\Make\MakeDomain;
+use Azzarip\Domains\Console\Commands\ModulesCache;
 use Azzarip\Domains\Console\Commands\ModulesList;
 use Azzarip\Domains\Console\Commands\ModulesSync;
-use Azzarip\Domains\Console\Commands\DomainsClear;
-use Azzarip\Domains\Console\Commands\ModulesCache;
-use Azzarip\Domains\Console\Commands\Make\MakeDomain;
+use Closure;
+use Illuminate\Console\Application as Artisan;
+use Illuminate\Console\Command;
 use Illuminate\Contracts\Translation\Translator as TranslatorContract;
-use Illuminate\Database\Eloquent\Factories\Factory as EloquentFactory;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
+use Illuminate\Translation\Translator;
+use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\View\Factory as ViewFactory;
+use Livewire\Livewire;
+use ReflectionClass;
+use Symfony\Component\Finder\SplFileInfo;
 
 class DomainsServiceProvider extends ServiceProvider
 {
@@ -42,7 +39,7 @@ class DomainsServiceProvider extends ServiceProvider
 	}
 	
 	public function register(): void
-	{	
+	{
 		$this->app->singleton(DomainRegistry::class, function() {
 			return new DomainRegistry(
 				$this->getDomainsBasePath(),
@@ -213,7 +210,6 @@ class DomainsServiceProvider extends ServiceProvider
 				Livewire::component("{$module->name}::{$component_name}", $fully_qualified_component);
 			});
 	}
-	
 	
 	protected function onArtisanStart(Artisan $artisan): void
 	{

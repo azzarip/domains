@@ -5,10 +5,10 @@
 
 namespace Azzarip\Domains\Tests\EventDiscovery {
 	use App\EventDiscoveryImplicitlyEnabledTestProvider;
-	use Illuminate\Support\Facades\Event;
 	use Azzarip\Domains\Support\Facades\Modules;
 	use Azzarip\Domains\Tests\Concerns\PreloadsAppModules;
 	use Azzarip\Domains\Tests\TestCase;
+	use Illuminate\Support\Facades\Event;
 	
 	class EventDiscoveryImplicitlyEnabledTest extends TestCase
 	{

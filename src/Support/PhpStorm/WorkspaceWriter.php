@@ -2,8 +2,8 @@
 
 namespace Azzarip\Domains\Support\PhpStorm;
 
-use Illuminate\Support\Str;
 use Azzarip\Domains\Support\ModuleConfig;
+use Illuminate\Support\Str;
 
 class WorkspaceWriter extends ConfigWriter
 {
