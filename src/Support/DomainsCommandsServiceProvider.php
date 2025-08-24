@@ -101,7 +101,7 @@ class DomainsCommandsServiceProvider extends ServiceProvider
 
 	public function boot(): void
     {
-		$this->loadRoutesFrom(__DIR__.'/../routes/routes.php');
+		$this->loadRoutesFrom(__DIR__.'/../../routes/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
