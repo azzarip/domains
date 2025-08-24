@@ -21,7 +21,8 @@
         "ext-simplexml": "*",
         "ext-dom": "*",
         "composer/composer": "^2.1",
-        "illuminate/support": "^9|^10|^11|^12|13.x-dev|dev-master|dev-main"
+        "illuminate/support": "^9|^10|^11|^12|13.x-dev|dev-master|dev-main",
+        "spatie/laravel-sitemap": "^7.3"
     },
     "require-dev": {
         "orchestra/testbench": "^9.11|^10.0|dev-master|dev-main",

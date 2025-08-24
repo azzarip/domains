@@ -4,9 +4,7 @@ namespace Azzarip\Domains\Support;
 
 use Illuminate\Console\Application;
 use Illuminate\Console\Application as Artisan;
-use Illuminate\Database\Console\Migrations\MigrateMakeCommand as OriginalMakeMigrationCommand;
 use Illuminate\Support\ServiceProvider;
-use Azzarip\Domains\Console\Commands\Database\SeedCommand;
 use Azzarip\Domains\Console\Commands\Make\MakeCast;
 use Azzarip\Domains\Console\Commands\Make\MakeChannel;
 use Azzarip\Domains\Console\Commands\Make\MakeCommand;
@@ -100,4 +98,15 @@ class DomainsCommandsServiceProvider extends ServiceProvider
 			return new MakeLivewire();
 		});
 	}
+
+	public function boot(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+	            \Azzarip\Domains\Commands\GenerateSitemap::class,
+            ]);
+        }
+    }
+	
+
 }
