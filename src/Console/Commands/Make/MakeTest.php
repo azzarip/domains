@@ -13,7 +13,7 @@ class MakeTest extends TestMakeCommand
 	
 	protected function getPath($name)
 	{
-		if ($module = $this->module()) {
+		if ($module = $this->domain()) {
 			$name = '\\'.Str::replaceFirst($module->namespaces->first(), '', $name);
 			return $this->getModularPath($name);
 		}
@@ -23,7 +23,7 @@ class MakeTest extends TestMakeCommand
 	
 	protected function rootNamespace()
 	{
-		if ($module = $this->module()) {
+		if ($module = $this->domain()) {
 			return $module->namespaces->first().'Tests';
 		}
 		

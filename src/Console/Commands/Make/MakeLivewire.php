@@ -22,7 +22,7 @@ if (class_exists(MakeCommand::class)) {
 		
 		public function handle()
 		{
-			if ($module = $this->module()) {
+			if ($module = $this->domain()) {
 				Config::set('livewire.class_namespace', $module->qualify('Http\\Livewire'));
 				Config::set('livewire.view_path', $module->path('resources/views/livewire'));
 				
@@ -46,7 +46,7 @@ if (class_exists(MakeCommand::class)) {
 		
 		protected function createClass($force = false, $inline = false)
 		{
-			if ($module = $this->module()) {
+			if ($module = $this->domain()) {
 				$name = Str::of($this->argument('name'))
 					->split('/[.\/(\\\\)]+/')
 					->map([Str::class, 'studly'])

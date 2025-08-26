@@ -11,7 +11,7 @@ class MakeFactory extends FactoryMakeCommand
 	
 	protected function replaceNamespace(&$stub, $name)
 	{
-		if ($module = $this->module()) {
+		if ($module = $this->domain()) {
 			$model = $this->option('model')
 				? $this->qualifyModel($this->option('model'))
 				: $this->qualifyModel($this->guessModelName($name));
@@ -39,7 +39,7 @@ class MakeFactory extends FactoryMakeCommand
 	
 	protected function guessModelName($name)
 	{
-		if ($module = $this->module()) {
+		if ($module = $this->domain()) {
 			if (Str::endsWith($name, 'Factory')) {
 				$name = substr($name, 0, -7);
 			}

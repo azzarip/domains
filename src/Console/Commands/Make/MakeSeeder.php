@@ -13,7 +13,7 @@ class MakeSeeder extends SeederMakeCommand
 	
 	protected function getPath($name)
 	{
-		if ($module = $this->module()) {
+		if ($module = $this->domain()) {
 			$name = Str::replaceFirst($module->qualify('Database\\Seeders\\'), '', $name);
 			return $this->getModularPath($name);
 		}
@@ -23,7 +23,7 @@ class MakeSeeder extends SeederMakeCommand
 	
 	protected function replaceNamespace(&$stub, $name)
 	{
-		if ($module = $this->module()) {
+		if ($module = $this->domain()) {
 			if (version_compare($this->getLaravel()->version(), '9.6.0', '<')) {
 				$namespace = $module->qualify('Database\Seeders');
 				$stub = str_replace('namespace Database\Seeders;', "namespace {$namespace};", $stub);
@@ -35,7 +35,7 @@ class MakeSeeder extends SeederMakeCommand
 	
 	protected function rootNamespace()
 	{
-		if ($module = $this->module()) {
+		if ($module = $this->domain()) {
 			if (version_compare($this->getLaravel()->version(), '9.6.0', '>=')) {
 				return $module->qualify('Database\Seeders');
 			}

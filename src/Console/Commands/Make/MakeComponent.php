@@ -10,7 +10,7 @@ class MakeComponent extends ComponentMakeCommand
 	
 	protected function viewPath($path = '')
 	{
-		if ($module = $this->module()) {
+		if ($module = $this->domain()) {
 			return $module->path("resources/views/{$path}");
 		}
 		

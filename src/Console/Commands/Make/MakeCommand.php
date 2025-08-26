@@ -11,7 +11,7 @@ class MakeCommand extends ConsoleMakeCommand
 	
 	protected function replaceClass($stub, $name)
 	{
-		$module = $this->module();
+		$module = $this->domain();
 		
 		$stub = parent::replaceClass($stub, $name);
 		
