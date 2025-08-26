@@ -10,8 +10,8 @@ class MakeModel extends ModelMakeCommand
 	
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		if ($module = $this->domain()) {
-			$rootNamespace = rtrim($module->namespaces->first(), '\\');
+		if ($domain = $this->domain()) {
+			$rootNamespace = rtrim($domain->namespaces->first(), '\\');
 		}
 		
 		return $rootNamespace.'\Models';
